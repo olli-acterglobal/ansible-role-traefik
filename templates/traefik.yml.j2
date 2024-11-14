@@ -47,6 +47,9 @@ entryPoints:
   {{ traefik_config_entrypoint_web_secure_name }}:
     address: {{ traefik_config_entrypoint_web_secure_address | to_json }}
 
+    http:
+      middlewares: {{ traefik_config_entrypoint_web_secure_http_middlewares | to_json }}
+
     {% if traefik_config_entrypoint_web_secure_http3_enabled %}
     http3: {{ traefik_config_entrypoint_web_secure_http3_config | to_json }}
     {% endif %}
