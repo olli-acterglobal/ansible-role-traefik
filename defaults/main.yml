@@ -127,6 +127,16 @@ traefik_config_entrypoint_web_forwardedHeaders_trustedIPs: []
 # Controls `forwardedHeaders.insecure` for this entrypoint.
 # Also see: `traefik_config_entrypoint_web_forwardedHeaders_trustedIPs`
 traefik_config_entrypoint_web_forwardedHeaders_insecure: false
+# Controls `transport.respondingTimeouts.readTimeout` for the `web` entrypoint - timeouts for incoming requests to the Traefik instance.
+# Setting them has no effect for UDP entryPoints.
+# See https://doc.traefik.io/traefik/routing/entrypoints/#respondingtimeouts
+traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout: 60s
+# Controls `transport.respondingTimeouts.writeTimeout` for the `web` entrypoint - the maximum duration before timing out writes of the response.
+# See https://doc.traefik.io/traefik/routing/entrypoints/#respondingtimeouts
+traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout: 0s
+# Controls `transport.respondingTimeouts.idleTimeout` for the `web` entrypoint - the maximum duration an idle (keep-alive) connection will remain idle before closing itself.
+# See https://doc.traefik.io/traefik/routing/entrypoints/#respondingtimeouts
+traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout: 180s
 
 # Controls whether the web entrypoint should be redirected to web-secure
 # If web-secure is enabled, we enable this redirection by default.
@@ -151,6 +161,16 @@ traefik_config_entrypoint_web_secure_forwardedHeaders_trustedIPs: []
 # Controls `forwardedHeaders.insecure` for this entrypoint.
 # Also see: `traefik_config_entrypoint_web_secure_forwardedHeaders_trustedIPs`
 traefik_config_entrypoint_web_secure_forwardedHeaders_insecure: false
+# Controls `transport.respondingTimeouts.readTimeout` for the `web-secure` entrypoint - timeouts for incoming requests to the Traefik instance.
+# Setting them has no effect for UDP entryPoints.
+# See https://doc.traefik.io/traefik/routing/entrypoints/#respondingtimeouts
+traefik_config_entrypoint_web_secure_transport_respondingTimeouts_readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+# Controls `transport.respondingTimeouts.writeTimeout` for the `web-secure` entrypoint - the maximum duration before timing out writes of the response.
+# See https://doc.traefik.io/traefik/routing/entrypoints/#respondingtimeouts
+traefik_config_entrypoint_web_secure_transport_respondingTimeouts_writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+# Controls `transport.respondingTimeouts.idleTimeout` for the `web-secure` entrypoint - the maximum duration an idle (keep-alive) connection will remain idle before closing itself.
+# See https://doc.traefik.io/traefik/routing/entrypoints/#respondingtimeouts
+traefik_config_entrypoint_web_secure_transport_respondingTimeouts_idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
 
 traefik_config_entrypoint_web_secure_http3_enabled: true
 traefik_config_entrypoint_web_secure_http3_config_advertisedPort: "{{ traefik_config_entrypoint_web_secure_port }}"
