@@ -17,9 +17,7 @@ accessLog:
   {% if traefik_config_accessLog_filePath %}
   filePath: {{ traefik_config_accessLog_filePath | to_json }}
   {% endif %}
-  {% if traefik_config_accessLog_bufferingSize %}
   bufferingSize: {{ traefik_config_accessLog_bufferingSize | to_json }}
-  {% endif %}
 {% endif %}
 
 api:
