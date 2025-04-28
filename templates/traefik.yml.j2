@@ -14,10 +14,10 @@ log:
 {% if traefik_config_accessLog_enabled %}
 accessLog:
   format: {{ traefik_config_accessLog_format | to_json }}
-  {% if traefik_config_accessLog_filePath is defined %}
+  {% if traefik_config_accessLog_filePath %}
   filePath: {{ traefik_config_accessLog_filePath | to_json }}
   {% endif %}
-  {% if traefik_config_accessLog_bufferingSize is defined %}
+  {% if traefik_config_accessLog_bufferingSize %}
   bufferingSize: {{ traefik_config_accessLog_bufferingSize | to_json }}
   {% endif %}
 {% endif %}
